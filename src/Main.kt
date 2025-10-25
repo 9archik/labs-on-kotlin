@@ -509,3 +509,35 @@
 //    treatFunction()
 //    trickAgain()
 //}
+// Функции-значения
+val trick = {
+    println("No treats!")
+}
+
+val treat: () -> Unit = {
+    println("Have a treat!")
+}
+
+// Возвращаем функцию и принимаем nullable лямбду как последний параметр
+fun trickOrTreat(isTrick: Boolean, extraTreat: ((Int) -> String)?): () -> Unit {
+    return if (isTrick) {
+        trick
+    } else {
+        if (extraTreat != null) {
+            println(extraTreat(5))
+        }
+        treat
+    }
+}
+
+fun main() {
+    // Передаем лямбду напрямую и используем $it - краткий синтаксис
+    val treatFunction = trickOrTreat(false) { "$it quarters" }  // trailing lambda
+    val trickFunction = trickOrTreat(true, null)
+
+    repeat(4) {                       // it - индекс повтора, тут не используем
+        treatFunction()
+    }
+    treatFunction()
+    trickFunction()
+}
