@@ -32,6 +32,11 @@
 //     println("Windy")
 // }
 
+//fun main() {
+//    println("How's the weather today?")
+//}
+
 fun main() {
-    println("How's the weather today?")
+    val count: Int = 10
+    println("You have $count unread messages.")
 }
